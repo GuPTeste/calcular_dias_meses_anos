@@ -1,14 +1,22 @@
-function calculateDifference() {
-    var date1 = moment(document.getElementById('date1').value);
-    var date2 = moment(document.getElementById('date2').value);
+let displayValue = '';
 
-    var daysDiff = date2.diff(date1, 'days');
-    var weeksDiff = date2.diff(date1, 'weeks');
-    var monthsDiff = date2.diff(date1, 'months');
-    var yearsDiff = date2.diff(date1, 'years');
+function appendValue(value) {
+    displayValue += value;
+    document.getElementById('display').value = displayValue;
+}
 
-    document.getElementById('days').innerText = daysDiff;
-    document.getElementById('weeks').innerText = weeksDiff;
-    document.getElementById('months').innerText = monthsDiff;
-    document.getElementById('years').innerText = yearsDiff;
+function calculate() {
+    try {
+        const result = eval(displayValue);
+        document.getElementById('display').value = result;
+        displayValue = result.toString();
+    } catch (error) {
+        document.getElementById('display').value = 'Error';
+        displayValue = '';
+    }
+}
+
+function clearDisplay() {
+    displayValue = '';
+    document.getElementById('display').value = '';
 }
