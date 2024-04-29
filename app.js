@@ -1,14 +1,24 @@
-function calculateDifference() {
-    var date1 = moment(document.getElementById('date1').value);
-    var date2 = moment(document.getElementById('date2').value);
+// app.js
+function calcularMedia() {
+    var nome = document.getElementById("nome").value;
+    var nota1 = parseFloat(document.getElementById("nota1").value);
+    var nota2 = parseFloat(document.getElementById("nota2").value);
+    var nota3 = parseFloat(document.getElementById("nota3").value);
+    var nota4 = parseFloat(document.getElementById("nota4").value);
 
-    var daysDiff = date2.diff(date1, 'days');
-    var weeksDiff = date2.diff(date1, 'weeks');
-    var monthsDiff = date2.diff(date1, 'months');
-    var yearsDiff = date2.diff(date1, 'years');
+    var media = (nota1 + nota2 + nota3 + nota4) / 4;
 
-    document.getElementById('days').innerText = daysDiff;
-    document.getElementById('weeks').innerText = weeksDiff;
-    document.getElementById('months').innerText = monthsDiff;
-    document.getElementById('years').innerText = yearsDiff;
+    var resultadoElement = document.getElementById("resultado");
+    resultadoElement.innerText = nome + ", sua média é: " + media.toFixed(2);
+
+    if (media < 5) {
+        resultadoElement.style.color = "red";
+        resultadoElement.innerText += " - Reprovado";
+    } else if (media >= 5 && media < 7) {
+        resultadoElement.style.color = "yellow";
+        resultadoElement.innerText += " - Em Recuperação";
+    } else {
+        resultadoElement.style.color = "green";
+        resultadoElement.innerText += " - Aprovado";
+    }
 }
